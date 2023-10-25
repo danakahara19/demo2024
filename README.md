@@ -21,9 +21,21 @@
 |HQ-SRV        |ens192   |192.168.0.6|/25        |192.168.0.5|
 |BR-SRV        |ens192   |192.168.0.135|/27      |192.168.0.136|
 
->Расписал ip адреса с помощью команды `nano /etc/netwonking/interfecas`  
->что бы узнать ip  нужна команда `ip a`
-## ISP2
+**Расписал ip адреса с помощью команды**  
+```
+nano /etc/network/interfaces
+```    
+**что бы узнать ip  нужна команда**  
+```
+ip a
+```
+**После этого перезагрузка системы**
+```
+systemctl restart networking 
+```
+
+## ISP2 
+```
 iface ens192 inet static  
 address 192.168.0.173  
 netmask 255.255.255.252    
@@ -38,8 +50,10 @@ iface ens256 inet static
 address 10.12.32.6  
 netmask 255.255.255.255  
 gateway 10.10.200.200  
+```
 
 ## BR-R
+```
 auto ens192  
 iface ens192 inet static  
 address 192.168.0.136  
@@ -50,8 +64,9 @@ iface ens224 inet static
 address 192.168.0.165  
 netmask 255.255.255.252  
 gateway 192.168.0.166  
-
+```
 ## HQ-R
+```
 iface ens192 inet static
 address 192.168.0.172
 netmask 255.255.255.252
@@ -61,3 +76,4 @@ auto ens224
 iface ens224 inet static  
 address 192.168.0.5  
 netmask 255.255.255.128  
+```
