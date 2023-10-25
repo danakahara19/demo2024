@@ -21,25 +21,23 @@
 |HQ-SRV        |ens192   |192.168.0.6|/25        |192.168.0.5|
 |BR-SRV        |ens192   |192.168.0.135|/27      |192.168.0.136|
 
->Я расписал ip адреса в устройства
+>'Расписал ip адреса'
+>'что бы узнать ip  нужна команда 'ip a''
 ## ISP2
 iface ens192 inet static  
 address 192.168.0.173  
-netmask 255.255.255.252  
-dns-nameservers 8.8.8.8  
+netmask 255.255.255.252    
 
 auto ens224  
 iface ens224 inet static  
 address 192.168.0.166  
 netmask 255.255.255.252  
-dns-nameservers 8.8.8.8  
 
 auto ens256  
 iface ens256 inet static  
 address 10.12.32.6  
 netmask 255.255.255.255  
 gateway 10.10.200.200  
-dns-nameservers 8.8.8.8  
 
 ## BR-R
 auto ens192  
