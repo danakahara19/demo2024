@@ -77,6 +77,21 @@ iface ens224 inet static
 address 192.168.0.5  
 netmask 255.255.255.128  
 ```
+## Настройка внутренней динамической маршрутизации по средствам FRR
+Сначала надо установить FRR
+```
+apt-get install update
+apt-get install frr
+```
+
+
+
+
+
+
+
+
+
 **Просмотр статуса сети**
 ```
 systemctl status networking
