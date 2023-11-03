@@ -80,11 +80,60 @@ netmask 255.255.255.128
 ```
 systemctl status networking
 ```
-### Настройка NAT
-.....
+### Настройка NAT на ISP, BR-R, HQ-R
+```
+apt install iptables
+```
+```
+nano /etc/sysctl.conf
+```
+должно показать `net.ipv4.ip_forward=1`
+```
+sysctl -p
+```
+```
+iptables -A POSTROUTING -t nat -j MASQUERADE
+```
+```
+nano /etc/network/if-pre-up.d/nat
+```
+```
+#!/bin/sh
+/sbin/iptables -A POSTROUTING -t nat -j MASQUERADE
+```
+```
+chmod +x /etc/network/if-pre-up.d/nat
+```
 ### Настройка внутренней динамической маршрутизации по средствам FRR
 Сначала надо установить FRR
 ```
 apt-get install update
 apt-get install frr
+```
+```
+nano /etc/frr/daemons
+```
+`ospfd=no` заменить на 
+```
+ospfd=yes
+```
+```
+systemctl restart frr
+```
+заходим в `vtysh`
+```
+sh int br
+```
+```
+conf t
+```
+```
+router ospf
+```
+```
+net 192.168.0.169 area 0
+net 192.168.0.161 area 0
+```
+```
+sh ip ospf neigh
 ```
