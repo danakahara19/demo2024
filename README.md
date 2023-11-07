@@ -163,10 +163,6 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
  option subnet-mask 255.255.255.252;
 }
 ```
-Перезагружаем dhcp
-```
-systemctl restart isc-dhcp-server.service
-```
 На HQ-SRV в конфиге поставить DHCP
 ```
 auto ens192
@@ -174,4 +170,11 @@ iface ens192 inet dhcp
 #address 192.168.0.6
 #netmask 255.255.255.128
 #gateway 192.168.0.5
+```
+Перезагружаем dhcp и сервер
+```
+systemctl restart isc-dhcp-server.service
+```
+```
+systemctl restart networking
 ```
