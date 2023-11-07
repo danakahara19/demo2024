@@ -104,7 +104,7 @@ nano /etc/network/if-pre-up.d/nat
 ```
 chmod +x /etc/network/if-pre-up.d/nat
 ```
-### Настройка внутренней динамической маршрутизации по средствам FRR
+### Настройка внутренней динамической маршрутизации по средствам FRR на ISP, BR-R, HQ-R
 Сначала надо установить FRR
 ```
 apt-get install update
