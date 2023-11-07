@@ -80,7 +80,7 @@ netmask 255.255.255.128
 ```
 systemctl status networking
 ```
-### Настройка NAT на ISP, BR-R, HQ-R
+### №1.2 Настройка NAT на ISP, BR-R, HQ-R
 ```
 apt install iptables
 ```
@@ -104,7 +104,7 @@ nano /etc/network/if-pre-up.d/nat
 ```
 chmod +x /etc/network/if-pre-up.d/nat
 ```
-### Настройка внутренней динамической маршрутизации по средствам FRR на ISP, BR-R, HQ-R
+### №1.2 Настройка внутренней динамической маршрутизации по средствам FRR на ISP, BR-R, HQ-R
 Сначала надо установить FRR
 ```
 apt-get install update
@@ -137,7 +137,7 @@ net 192.168.0.161 area 0
 ```
 sh ip ospf neigh
 ```
-### Настройка DHCP IP-адресов на роутере HQ-R
+### №1.3Настройка DHCP IP-адресов на роутере HQ-R
 Установка DHCP
 ```
 apt install isc-shcp-server
@@ -178,3 +178,9 @@ systemctl restart isc-dhcp-server.service
 ```
 systemctl restart networking
 ```
+### №1.4 Настройка локальных учетных записей на всех устройствах
+|Учетная запись|Пароль  |Примечание      |
+|--------------|--------|----------------|
+|Admin         |P@ssw0rd|CLI HQ-SRV HQ-R |
+|Branch admin  |P@ssw0rd|BR-SRV BR-R     |
+|Network admin |P@ssw0rd|HQ-R BR-R BR-SRV|
