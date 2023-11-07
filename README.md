@@ -139,4 +139,39 @@ sh ip ospf neigh
 ```
 ### Настройка DHCP IP-адресов на роутере HQ-R
 Установка DHCP
-6
+```
+apt install isc-shcp-server
+```        
+Вход в конфиг
+```
+nano /etc/default/isc-dhcp-server
+```
+Указываю интерфейс
+```
+INTERFACE="ens192"
+```
+Вход в конфицурацию 
+```
+nano /etc/dhcp/dhcpd.conf
+```
+настраиваем IP
+```
+subnet 192.168.0.0 netmask 255.255.255.0 {
+ range 192.168.0.6 192.168.0.168;
+ optiondomain-name-servers 8.8.8.8 8.8.4.4;
+ option routers 192.168.0.1;
+ option subnet-mask 255.255.255.252;
+}
+```
+Перезагружаем dhcp
+```
+systemctl restart isc-dhcp-server.service
+```
+На HQ-SRV в конфиге поставить DHCP
+```
+auto ens192
+iface ens192 inet dhcp
+#address 192.168.0.6
+#netmask 255.255.255.128
+#gateway 192.168.0.5
+```
