@@ -184,3 +184,19 @@ systemctl restart networking
 |Admin         |P@ssw0rd|CLI HQ-SRV HQ-R |
 |Branch admin  |P@ssw0rd|BR-SRV BR-R     |
 |Network admin |P@ssw0rd|HQ-R BR-R BR-SRV|
+
+Cоздание пользователя 
+```
+useradd Admin
+```
+Создание пароля
+```
+passwd Admin
+```
+Проверка
+```
+nano /etc/passwd
+```
+Так создаем и на остальных устройствах
+
+
