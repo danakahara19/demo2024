@@ -89,7 +89,7 @@ apt install iptables
 ```
 nano /etc/sysctl.conf
 ```
-должно показать `net.ipv4.ip_forward=1`
+должно показать `net.ipv4.ip_forward=1`  
 Пишем
 ```
 sysctl -p
