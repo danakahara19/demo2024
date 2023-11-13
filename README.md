@@ -81,13 +81,16 @@ netmask 255.255.255.128
 systemctl status networking
 ```
 ### №1.2 Настройка NAT на ISP, BR-R, HQ-R
+Скачиваем 
 ```
 apt install iptables
 ```
+Смотрим
 ```
 nano /etc/sysctl.conf
 ```
 должно показать `net.ipv4.ip_forward=1`
+Пишем
 ```
 sysctl -p
 ```
@@ -97,10 +100,12 @@ iptables -A POSTROUTING -t nat -j MASQUERADE
 ```
 nano /etc/network/if-pre-up.d/nat
 ```
+Потом прописываем
 ```
 #!/bin/sh
 /sbin/iptables -A POSTROUTING -t nat -j MASQUERADE
 ```
+Проверяем
 ```
 chmod +x /etc/network/if-pre-up.d/nat
 ```
@@ -220,3 +225,9 @@ ufw allow 5201
 iperf3 -c 192.168.0.8 -p 5201
 ```
 ![iperf3](https://github.com/danakahara19/demo2024/assets/148867574/28fbbbca-9652-45d4-8edb-7d277cb01fe3)
+
+### №1.6 Сoставить backup скрипты на HQ-R BR-R
+
+
+
+
