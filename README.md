@@ -145,7 +145,7 @@ sh ip ospf neigh
 ### №1.3Настройка DHCP IP-адресов на роутере HQ-R
 Установка DHCP
 ```
-apt install isc-shcp-server
+apt install isc-dhcp-server
 ```        
 Вход в конфиг
 ```
