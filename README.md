@@ -227,6 +227,9 @@ iperf3 -c 192.168.0.8 -p 5201
 ![iperf3](https://github.com/danakahara19/demo2024/assets/148867574/28fbbbca-9652-45d4-8edb-7d277cb01fe3)
 
 ### №1.6 Сoставить backup скрипты на HQ-R BR-R
+```
+apt install rsync -y
+```
 
 
 
