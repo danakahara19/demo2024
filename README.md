@@ -254,5 +254,5 @@ cd /etc/frr/backup
 ```
 ls -a
 ```
-
-
+подверждаем работу скрипта
+<img width="322" alt="Снимок экрана 2023-11-20 в 16 30 14" src="https://github.com/danakahara19/demo2024/assets/148867574/df9728d3-67d9-414f-a62c-d060b73f8de1">
