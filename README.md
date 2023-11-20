@@ -142,7 +142,7 @@ net 192.168.0.161 area 0
 ```
 sh ip ospf neigh
 ```
-### №1.3Настройка DHCP IP-адресов на роутере HQ-R
+### №1.3 Настройка DHCP IP-адресов на роутере HQ-R
 Установка DHCP
 ```
 apt install isc-dhcp-server
@@ -165,7 +165,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
  range 192.168.0.6 192.168.0.168;
  optiondomain-name-servers 8.8.8.8 8.8.4.4;
  option routers 192.168.0.1;
- option subnet-mask 255.255.255.252;
+ option s ubnet-mask 255.255.255.252;
 }
 ```
 На HQ-SRV в конфиге поставить DHCP
@@ -227,10 +227,32 @@ iperf3 -c 192.168.0.8 -p 5201
 ![iperf3](https://github.com/danakahara19/demo2024/assets/148867574/28fbbbca-9652-45d4-8edb-7d277cb01fe3)
 
 ### №1.6 Сoставить backup скрипты на HQ-R BR-R
+Скачал rsync
 ```
 apt install rsync -y
 ```
+каталог для cохранения backup-ов 
+```
+mkdir /etc/ffr/backup
+```
+Зашел в список скриптов 
+```
+crontab -e
+```
+поставил в него скрипт для backup-a
+```
+0 0 * * * rsync -avzh /etc/frr/frr.conf /etc/frr/backup
+```
+сохраняю и выхожу из списка
+>ctrl+s ctrl+z
 
-
+Проверка backup скрипта
+```
+cd /etc/frr/backup
+```
+смотрим какие файлы в каталоге
+```
+ls -a
+```
 
 
