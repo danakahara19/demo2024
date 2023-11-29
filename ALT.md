@@ -57,7 +57,8 @@ echo 192.168.0.169 > /etc/net/ifaces/ens__/ipv4address
 ```
 echo default via 192.168.0.170 > /etc/net/ifaces/ens__/ipv4route
 ```
-> вместо __ писать интерфейс на который ставим ip адрес    
+> вместо __ писать интерфейс на который ставим ip адрес
+
 После установки IP адресов перезагружаем сеть
 ```
 service network restart 
