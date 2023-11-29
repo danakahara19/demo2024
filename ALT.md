@@ -35,6 +35,26 @@ e. Пул адресов для сети офиса HQ - не более 64. Д�
 ### Топология
 ![image](https://github.com/danakahara19/demo2024/assets/148867574/9d888dc7-b2f7-4ec0-8c46-1e8105726a73)
 
-
-
-
+Смотрим интерфейсы к Ip адресам
+```
+ip a
+```
+Открываем файл options и редактируем как показано 
+```
+BOOTPROTO=static
+TYPE=eth
+CONFIG_WIRELESS=no
+SYSTEMD_BOOTPROTO=dhcp4
+CONFIG_IPV4=yes
+DISABLED=no
+NM_CONTROLLED=no
+SYSTEMD_CONTROLLED=no
+```
+Ставим IP адреса и шлюз
+```
+echo 192.168.0.169 > /etc/net/ifaces/ens__/ipv4address
+```
+```
+echo default via 192.168.0.170 > /etc/net/ifaces/ens__/ipv4route
+```
+вместо __ писать интерфейс на который ставим ip адрес
