@@ -71,4 +71,8 @@ echo default via 192.168.0.170 > /etc/net/ifaces/ens__/ipv4route
 После установки IP адресов перезагружаем сеть
 ```
 service network restart 
-```  
+```
+что бы ip не убирались и не было второго 
+```
+systemctl disable network.service NetworkManager
+```
