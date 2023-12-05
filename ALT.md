@@ -44,6 +44,9 @@ su -
 ip a
 ```
 Открываем файл options и редактируем как показано   
+```
+vim /etc/net/ifaces/ens__/options
+```
 Если файл не сохраняется пистаь команду 
 ```
 mkdir /etc/net/ifaces/ens__
