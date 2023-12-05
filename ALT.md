@@ -61,7 +61,7 @@ SYSTEMD_CONTROLLED=no
 ```
 Ставим IP адреса и шлюз
 ```
-echo 192.168.0.169 > /etc/net/ifaces/ens__/ipv4address
+echo 192.168.0.169/30 > /etc/net/ifaces/ens__/ipv4address
 ```
 ```
 echo default via 192.168.0.170 > /etc/net/ifaces/ens__/ipv4route
