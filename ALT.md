@@ -79,3 +79,28 @@ service network restart
 ```
 systemctl disable network.service NetworkManager
 ```
+### Настройка NAT на ISP HQ-R BR-R
+установка пакетов Firewalld
+```
+apt-get -y install firewall
+```
+автозагрузка
+```
+systemctl enable --now firewalld
+```
+Правила к исходяшим пакетам
+```
+firewall-cmd --permanent --zone=public --add-interface=ens33
+```
+Правила к входяшим пакетам
+```
+firewall-cmd --permanent --zone=trusted --add-interface=ens34
+```
+Включаем NAT
+```
+firewall-cmd --permanent --zone=public --add-masquerade
+```
+Сохраняем
+```
+firewall-cmd --reload
+```
