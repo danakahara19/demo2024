@@ -85,7 +85,7 @@ systemctl disable network.service NetworkManager
 apt-get -y install firewall
 ```
 автозагрузка
-```
+```     
 systemctl enable --now firewalld
 ```
 Правила к исходяшим пакетам
