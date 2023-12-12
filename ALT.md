@@ -104,3 +104,5 @@ firewall-cmd --permanent --zone=public --add-masquerade
 ```
 firewall-cmd --reload
 ```
+### Настройка тунелля между HQ-R и BR-R
+
