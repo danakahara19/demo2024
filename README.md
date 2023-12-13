@@ -31,7 +31,7 @@ ip a
 ```
 **После этого перезагрузка системы**
 ```
-systemctl restart networking 
+systemctl restart networking  
 ```
 
 #### ISP2 
