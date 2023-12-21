@@ -125,6 +125,64 @@ firewall-cmd --permanent --zone=trusted --add-port=89/tcp
 firewall-cmd --permanent --zone=trusted --add-port=89/udp
 ```
 ### Настройка тунелля между HQ-R и BR-R
+заходим в файл 
+```
+vim /etc/net/ifaces/tun1/options
+```
+если нет то создаем файл
+```
+mkdir /etc/net/ifaces/tun1
+```
+и заполняем его 
+```
+TYPE=iptun
+TUNTYPE=gre
+TUNLOCAL=192.168.0.161
+TUNREMOTE=102.168.0.169
+TUNOPTIONS='ttl 64'
+HOST=ens?192
+```
+Потом добавляем ip адрес на туннель
+```
+echo 4.4.4.1/24 > /etc/net/ifaces/tun1/ipv4address
+```
+И перезагужаем службу
+```
+systemctl restart network
+```
+### Настройка динам. маршрутизации FRR
+устанавливаем пакеты 
+```
+apt-get update
+apt-get -y install frr
+```
+включаем автозагругку
+```
+systemctl enable --now frr
+```
+заходим в даемона
+```
+vim /etc/frr/daemons
+```
+> ставим ospfd=yes
+заходим
+```
+vtysh
+```
+и пишем 
+```
+config 
+route ospf
+```
+``` 
+net 192.168.0.128/27 area 0
+net 4.4.4.0 area  0
+```
+```
+exit
+ip forwarding
+do w
+```
 
 ### настройка dhcp сервера на HQ-R
 
