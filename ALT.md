@@ -104,5 +104,27 @@ firewall-cmd --permanent --zone=public --add-masquerade
 ```
 firewall-cmd --reload
 ```
+Включаем пересылку всех пакетов на ISP между BR-R и HQ-R
+```
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens35 -o ens34 -j ACCEPT
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens34 -o ens35 -j ACCEPT
+```
+Открываем порты OSPF:
+```
+firewall-cmd --permanent --zone=trusted --add-port=89/tcp
+firewall-cmd --permanent --zone=trusted --add-port=89/udp
+```
+HQ-R и BR-R Включаем пересылку между интерфейсом смотрящим в ISP и туннелем:
+```
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens160 -o iptunnel -j ACCEPT
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i iptunnel -o ens160 -j ACCEPT
+```
+Открываем порты OSPF:
+```
+firewall-cmd --permanent --zone=trusted --add-port=89/tcp
+firewall-cmd --permanent --zone=trusted --add-port=89/udp
+```
 ### Настройка тунелля между HQ-R и BR-R
+
+### настройка dhcp сервера на HQ-R
 
