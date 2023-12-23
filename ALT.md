@@ -237,3 +237,20 @@ P@ssw0rd
 ```
 vim /etc/passwd
 ```
+### Измерить пропускную способность между двумя узлами HQ-R ISP по средствам утилиты iperf3.
+скачиваем пакеты
+```
+apt-get -y install iperf3
+```
+ISP как сервер:
+>если надо открыть порт
+```
+>iptables -A INPUT -p tcp --dport 5201 -j ACCEPT
+```
+```
+iperf3 -s
+```
+HQ-R:
+```
+iperf3 -c 192.168.0.161 -f M
+```
