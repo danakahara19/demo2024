@@ -212,4 +212,23 @@ ip forwarding
 
 
 ### настройка dhcp сервера на HQ-R
+### Создание пользователей
+Настройте локальные учётные записи на всех устройствах в соответствии с таблицей.
 
+|Учётная запись|	Пароль|	Примечание|
+|--------------|--------|-----------|
+|Admin|	P@ssw0rd|	CLI, HQ-SRV, HQ-R|
+|Branch admin|	P@ssw0rd|	BR-SRV, BR-R|
+|Network admin|	P@ssw0rd|	HQ-R, BR-R, HQ-SRV|
+Пользователь admin на HQ-SRV
+```
+adduser admin
+```
+```
+usermod -aG wheel admin
+```
+```
+passwd admin
+P@ssw0rd
+P@ssw0rd
+```
