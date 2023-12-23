@@ -190,12 +190,20 @@ vtysh
 config 
 route ospf
 ```
+```
+passive-interface default
+```
 ``` 
 net 192.168.0.128/27 area 0
-net 4.4.4.0 area  0
+net 192.168.0.161/30 area  0
 ```
 ```
 exit
+```
+```
+int tun1 
+ip ospf network point-to-point 
+no ip ospf passive 
 ```
 сохраняем все
 ```
