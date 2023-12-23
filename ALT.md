@@ -79,6 +79,10 @@ service network restart
 ```
 systemctl disable network.service NetworkManager
 ```
+Если нужно указать информацию о DNS-сервере, прописываем команду:
+```
+echo nameserver 8.8.8.8 > /etc/resolv.conf
+```
 ### Настройка NAT на ISP HQ-R BR-R
 установка пакетов Firewalld
 ```
@@ -90,12 +94,14 @@ systemctl enable --now firewalld
 ```
 Правила к исходяшим пакетам
 ```
-firewall-cmd --permanent --zone=public --add-interface=ens33
+firewall-cmd --permanent --zone=public --add-interface=ens__
 ```
+>public интерфейс смотрящий в сторону интернета
 Правила к входяшим пакетам
 ```
 firewall-cmd --permanent --zone=trusted --add-interface=ens34
 ```
+>trusted адреса внутренней локальной сети
 Включаем NAT
 ```
 firewall-cmd --permanent --zone=public --add-masquerade
@@ -104,26 +110,35 @@ firewall-cmd --permanent --zone=public --add-masquerade
 ```
 firewall-cmd --reload
 ```
-Включаем пересылку всех пакетов на ISP между BR-R и HQ-R
+##### Настройка для того что бы тунннель и FRR работали с NAT
+Включаем пересылку всех пакетов на **ISP** между BR-R и HQ-R
 ```
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens35 -o ens34 -j ACCEPT
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens34 -o ens35 -j ACCEPT
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens224 -o ens192 -j ACCEPT
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens192 -o ens224 -j ACCEPT
 ```
-Открываем порты OSPF:
+Открываем порты OSPF на ISP:
 ```
 firewall-cmd --permanent --zone=trusted --add-port=89/tcp
 firewall-cmd --permanent --zone=trusted --add-port=89/udp
 ```
-HQ-R и BR-R Включаем пересылку между интерфейсом смотрящим в ISP и туннелем:
+**HQ-R и BR-R** Включаем пересылку между интерфейсом смотрящим в ISP и туннелем:
 ```
 firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens160 -o iptunnel -j ACCEPT
-firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i iptunnel -o ens160 -j ACCEPT
+firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i iptunnel -o ens192 -j ACCEPT
 ```
-Открываем порты OSPF:
+Открываем порты OSPF на HQ-R и BR-R:
 ```
 firewall-cmd --permanent --zone=trusted --add-port=89/tcp
 firewall-cmd --permanent --zone=trusted --add-port=89/udp
 ```
+А так же нужно не забыть добавить туннель в зону trusted на HQ-R и BR-R:
+```
+firewall-cmd --permanent --zone=trusted --add-interface=tun1
+```
+>Так же стоит отключить NetworkManager:
+>```
+>systemctl disable network.service NetworkManager
+>```
 ### Настройка тунелля между HQ-R и BR-R
 заходим в файл 
 ```
@@ -150,7 +165,8 @@ echo 4.4.4.1/24 > /etc/net/ifaces/tun1/ipv4address
 ```
 systemctl restart network
 ```
-### Настройка динам. маршрутизации FRR
+### Настройка динам. маршрутизации FRR   
+
 устанавливаем пакеты 
 ```
 apt-get update
@@ -180,9 +196,20 @@ net 4.4.4.0 area  0
 ```
 ```
 exit
-ip forwarding
+```
+сохраняем все
+```
 do w
 ```
+Иногда настройки vtysh слетают, для этого заходим в:
+```
+nano /etc/frr/frr.conf
+```
+И добавляем после ipv6 forwarding такую строчку:
+```
+ip forwarding
+```
+
 
 ### настройка dhcp сервера на HQ-R
 
