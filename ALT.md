@@ -260,3 +260,23 @@ iperf3 -c 192.168.0.161 -f M
 [ 5] 1.00-2.00 sec 338 MBytes 338 MBytes/sec    0 676 KBytes
 [ 5] 3.00-4.00 sec 341 MBytes 341 MBytes/sec    0 749 KBytes
 ```
+### backup скрипты для сохранения конфигурации сетевых устройств HQ-R b BR-R
+создать папку для backup-а
+```
+mkdir /etc/networkbackup
+```
+Заход в планировщик заданий:
+```
+EDITOR=nano crontab -e
+```
+минута | час | день | месяц | день недели | "команда, например reboot":
+```
+9 15 * * * cp /etc/frr/frr.conf /etc/networkbackup
+```
+```
+ls /etc/networkbackup
+```
+```
+frr.conf
+```
+### SSH 
