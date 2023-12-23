@@ -136,9 +136,21 @@ firewall-cmd --permanent --zone=trusted --add-port=89/udp
 firewall-cmd --permanent --zone=trusted --add-interface=tun1
 ```
 >Так же стоит отключить NetworkManager:
->```
+```
 >systemctl disable network.service NetworkManager
->```
+```
+включаем маршрутизацию 
+```
+vim /etc/net/sysctl.conf
+```
+>вместо ip forward=0
+```
+ip forward=1
+```
+либо 
+```
+sed -i -e 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/g' /etc/net/sysctl.conf
+```
 ### Настройка тунелля между HQ-R и BR-R
 заходим в файл 
 ```
