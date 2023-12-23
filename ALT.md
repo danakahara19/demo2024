@@ -254,3 +254,9 @@ HQ-R:
 ```
 iperf3 -c 192.168.0.161 -f M
 ```
+```
+[ID] Interval      Transfer   Bitrate        Retr Cwnd
+[ 5] 0.00-1.00 sec 345 MBytes 344 MBytes/sec    0 538 KBytes
+[ 5] 1.00-2.00 sec 338 MBytes 338 MBytes/sec    0 676 KBytes
+[ 5] 3.00-4.00 sec 341 MBytes 341 MBytes/sec    0 749 KBytes
+```
