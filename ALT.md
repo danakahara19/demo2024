@@ -1,3 +1,5 @@
+скачивание alt linux
+![image](https://github.com/danakahara19/demo2024/assets/148867574/669aafb1-8178-4679-8d22-c34acfcc5c2c)
 
 ## Задание demo2024 №1
 1.Выполните базовую настройку всех устройств:
