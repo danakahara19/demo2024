@@ -110,7 +110,7 @@ firewall-cmd --permanent --zone=public --add-masquerade
 ```
 firewall-cmd --reload
 ```
-##### Настройка для того что бы тунннель и FRR работали с NAT
+#### Настройка для того что бы тунннель и FRR работали с NAT
 Включаем пересылку всех пакетов на **ISP** между BR-R и HQ-R
 ```
 firewall-cmd --direct --permanent --add-rule ipv4 filter FORWARD 0 -i ens224 -o ens192 -j ACCEPT
