@@ -233,3 +233,7 @@ passwd admin
 P@ssw0rd
 P@ssw0rd
 ```
+Проверка пользователей с помощью команды
+```
+vim /etc/passwd
+```
