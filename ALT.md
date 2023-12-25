@@ -103,7 +103,7 @@ firewall-cmd --permanent --zone=public --add-interface=ens__
 ```
 firewall-cmd --permanent --zone=trusted --add-interface=ens34
 ```
->trusted адреса внутренней локальной сети
+>trusted адреса внутренней локальной сети   
 Включаем NAT
 ```
 firewall-cmd --permanent --zone=public --add-masquerade
