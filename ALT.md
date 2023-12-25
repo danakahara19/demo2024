@@ -99,11 +99,13 @@ systemctl enable --now firewalld
 firewall-cmd --permanent --zone=public --add-interface=ens__
 ```
 >public интерфейс смотрящий в сторону интернета
+
 Правила к входяшим пакетам
 ```
 firewall-cmd --permanent --zone=trusted --add-interface=ens34
 ```
->trusted адреса внутренней локальной сети   
+>trusted адреса внутренней локальной сети
+ 
 Включаем NAT
 ```
 firewall-cmd --permanent --zone=public --add-masquerade
