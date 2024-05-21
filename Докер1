@@ -4,7 +4,7 @@
 ```
 apt-get update
 ```
-Установила пакет
+***Установила пакет***
 ```
 apt-get install docker-engine
 ```
