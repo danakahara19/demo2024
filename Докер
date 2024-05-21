@@ -1,7 +1,9 @@
 ###DOCKER
 Установка Docker  
 Обновила список пакетов  
-```apt-get update```
+```
+apt-get update
+```
 Установила пакет
 apt-get install docker-engine  
 Добавила утилиту в автозагрузку  
