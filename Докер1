@@ -1,22 +1,22 @@
 ###DOCKER
 Установка Docker
-Обновила список пакетов
+Обновила список пакетов  
 ```
-apt-get update
+apt-get update  
 ```
-***Установила пакет***
+***Установила пакет***  
 ```
-apt-get install docker-engine
+apt-get install docker-engine  
 ```
-Добавила утилиту в автозагрузку
+Добавила утилиту в автозагрузку  
 ```
-systemctl enable --now docker
+systemctl enable --now docker  
 ```
-Установила контейнер hello-world
+Установила контейнер hello-world  
 ```
-docker run hello-world
+docker run hello-world  
 ```
-Удалила контейнер hello-world
+Удалила контейнер hello-world  
 ```
-docker image rm -f hello-world
+docker image rm -f hello-world  
 ```
